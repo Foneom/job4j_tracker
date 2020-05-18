@@ -3,6 +3,12 @@ package ru.job4j.tracker;
 import java.util.Objects;
 
 public class Item {
+
+    public Item() {
+        super();
+        System.out.println("load item");
+    }
+
     private String id;
     private String name;
 
@@ -25,4 +31,7 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
-}
+    public static void main(String[] args) {
+      Bug bug = new Bug();
+        }
+    }
