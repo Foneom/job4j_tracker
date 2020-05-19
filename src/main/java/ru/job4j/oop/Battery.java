@@ -8,15 +8,15 @@ public class Battery {
     }
 
     public void exchange(Battery another) {
-        this.load = this.load + another.load;
-        another.load = 0;
+        another.load = this.load + another.load;
+        this.load = 0;
     }
 
     public static void main(String[] args) {
         Battery first = new Battery(15);
         Battery second = new Battery(10);
         System.out.printf("first battery: %d%nsecond battery: %d", first.load, second.load);
-        second.exchange(first);
+        first.exchange(second);
         System.out.printf("%n%nfirst battery: %d%nsecond battery: %d", first.load, second.load);
     }
 }
