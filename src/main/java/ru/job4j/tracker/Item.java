@@ -32,6 +32,7 @@ public class Item {
         this.name = name;
     }
     public static void main(String[] args) {
-      Bug bug = new Bug();
+      Item item = new Item();
+
         }
     }

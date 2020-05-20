@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Tiger extends Predator {
 
     public Tiger() {
@@ -7,7 +9,13 @@ public class Tiger extends Predator {
         System.out.println("Tiger");
     }
 
+    public Tiger(String name) {
+        System.out.println(name);
+    }
+
     public static void main(String[] args) {
-        Tiger simba = new Tiger();
+        Tiger tiger = new Tiger("ТИГР");
+        Predator predator = new Predator("Хищник");
+        Animal animal = new Animal("Животное");
     }
 }
