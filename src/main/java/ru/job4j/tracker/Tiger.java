@@ -14,8 +14,6 @@ public class Tiger extends Predator {
     }
 
     public static void main(String[] args) {
-        Tiger tiger = new Tiger("ТИГР");
-        Predator predator = new Predator("Хищник");
-        Animal animal = new Animal("Животное");
+        Tiger tiger = new Tiger();
     }
 }
