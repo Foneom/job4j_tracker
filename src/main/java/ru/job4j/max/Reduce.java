@@ -1,11 +1,13 @@
 package ru.job4j.max;
 
+import java.security.spec.RSAOtherPrimeInfo;
+
 public class Reduce {
     private int[] array;
 
-    public void to(int[] array) {
-         array = array;
-        }
+    public int[] to(int[] array) {
+        return array;
+    }
 
     public void print(int[] array) {
         for (int index = 0; index < array.length; index++) {
@@ -17,6 +19,6 @@ public class Reduce {
         int[] array = {1, 2, 3};
         Reduce reduce = new Reduce();
         reduce.to(array);
-        reduce.print(array);
+        reduce.print(reduce.to(array));
     }
 }
