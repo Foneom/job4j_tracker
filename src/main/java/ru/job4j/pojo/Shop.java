@@ -8,13 +8,17 @@ public class Shop {
                 products[i] = products[i + 1];
                 products[products.length - 1] = tmp;
                 tmp = null;
-                if (products[i] != null) {
-                    System.out.println(products[i].getName());
-                } else {
-                    System.out.println("null");
-                }
         }
         return products;
+    }
+    public void print(Product[] products, int index) {
+        for (int i = index; i < products.length - 1; i++) {
+            if (products[i] != null) {
+                System.out.println(products[i].getName());
+            } else {
+                System.out.println("null");
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -23,6 +27,7 @@ public class Shop {
         products[0] = new Product("Milk", 10);
         products[1] = new Product("Bread", 4);
         products[2] = new Product("Egg", 19);
-        shop.delete(products, 2);
+        shop.delete(products, 0);
+        shop.print(products, 0);
     }
 }
