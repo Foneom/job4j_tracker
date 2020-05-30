@@ -8,9 +8,20 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item("test1");
+        Item item = new Item("first");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
     }
+
+    @Test
+    public void whenFindItemByName() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("f");
+        tracker.add(item);
+        tracker.findAll();
+        Item result = tracker.findByName(item.getName());
+        assertThat(result.getName(), is(item.getName()));
+    }
+
 }
