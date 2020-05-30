@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Item {
 
     public Item() {
-        super();
         System.out.println("load item");
     }
 
@@ -31,8 +30,8 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+
     public static void main(String[] args) {
       Item item = new Item();
-
         }
     }
