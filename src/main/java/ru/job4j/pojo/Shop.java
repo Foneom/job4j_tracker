@@ -6,8 +6,8 @@ public class Shop {
     public Product[] delete(Product[] products, int index) {
             for (int i = index; i < products.length - 1; i++) {
                 products[i] = products[i + 1];
-                products[products.length - 1] = null;
         }
+        products[products.length - 1] = null;
         return products;
     }
 
@@ -27,7 +27,7 @@ public class Shop {
         products[0] = new Product("Milk", 10);
         products[1] = new Product("Bread", 4);
         products[2] = new Product("Egg", 19);
-        shop.delete(products, 0);
-        shop.print(products, 0);
+        shop.delete(products, 1);
+        shop.print(products, 1);
     }
 }
