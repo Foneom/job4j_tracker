@@ -2,6 +2,7 @@ package ru.job4j.pojo;
 
 
 public class Shop {
+
     public Product[] delete(Product[] products, int index) {
             for (int i = index; i < products.length - 1; i++) {
                 products[i] = products[i + 1];
@@ -9,6 +10,7 @@ public class Shop {
         }
         return products;
     }
+
     public void print(Product[] products, int index) {
         for (int i = index; i < products.length - 1; i++) {
             if (products[i] != null) {
