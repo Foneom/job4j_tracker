@@ -18,38 +18,39 @@ public class Tracker {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
-
-    public Item[] findAll() {
-        Item[] result = new Item[position];
+    /**
+     * Поиск ячейки по id
+     *
+     * @param id id искомой ячейки
+     * @return индекс ячейки
+     */
+    private int indexOf(String id) {
+        int rsl = -1;
         for (int index = 0; index < position; index++) {
-            if (items[index] != null) {
-                result[index] = this.items[index];
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
             }
         }
-        return result;
+        return rsl;
+    }
+
+    public Item[] findAll() {
+        return Arrays.copyOf(items, position);
     }
 
     public Item findById(String id) {
-        Item rsl = null;
-        for (int index = 0; index < position; index++) {
-            Item item = items[index];
-            if (item != null && item.getId().equals(id)) {
-                rsl = item;
-                break;
-            }
-        }
-        return rsl;
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
     }
 
-    public Item findByName(String key) {
-        Item rsl = null;
+    public Item[] findByName(String key) {
         for (int index = 0; index < position; index++) {
             Item item = items[index];
-            if (item != null && item.getName().equals(key)) {
-                rsl = item;
-                break;
+            if (item.getName().equals(key)) {
+                return Arrays.copyOf(items, position);
             }
         }
-        return rsl;
+        return null;
     }
 }
