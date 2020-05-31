@@ -1,11 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-
-import java.util.Arrays;
-
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
@@ -51,7 +47,6 @@ public class TrackerTest {
         Item[] result = {item1};
         assertThat(tracker.findByName("first"), is(result));
     }
-
     /**
      * Тест метода замены заявки
      */
@@ -80,8 +75,5 @@ public class TrackerTest {
         tracker.delete(item3.getId());
         Item[] result = {item1, item2};
         assertThat(tracker.findAll(), is(result));
-
     }
-
-
 }
