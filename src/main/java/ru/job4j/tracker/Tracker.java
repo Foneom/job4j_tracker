@@ -100,14 +100,13 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
-        if (items[index].getId().equals(id)) {
+        boolean rsl = index != -1;
+        if (rsl) {
             item.setId(id);
             items[index] = item;
-            return true;
         }
-        return false;
+        return rsl;
     }
-
     /**
      * Метод удаления заявки
      * @param id уникальный ключ
@@ -118,12 +117,12 @@ public class Tracker {
         int start = index + 1;
         int distPos = index;
         int size = position - index;
-        if (items[index].getId().equals(id)) {
+        boolean rsl = index != -1;
+        if (rsl) {
             items[position - 1] = null;
             position--;
             System.arraycopy(items, start, items, distPos, size);
-            return true;
         }
-        return false;
+        return rsl;
     }
 }
