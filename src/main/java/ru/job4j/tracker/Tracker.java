@@ -4,16 +4,28 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
-
+    /**
+     * Хранилище заявок
+     */
     private final Item[] items = new Item[100];
+    /**
+     * Указатель ячейки новой заявки
+     */
     private int position = 0;
-
+    /**
+     * Метод добавления новых зявок
+     * @param item новая заявка
+     * @return
+     */
     public Item add(Item item) {
         item.setId(generateId());
         items[position++] = item;
         return item;
     }
-
+    /**
+     * Генерация уникального ключа
+     * @return
+     */
     private String generateId() {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
@@ -34,25 +46,46 @@ public class Tracker {
         }
         return rsl;
     }
-
+    /**
+     * Получение всех заявок
+     * @return
+     */
     public Item[] findAll() {
         return Arrays.copyOf(items, position);
     }
-
+    /**
+     * Поиск заявки по id
+     * @param id искомой ячейки
+     * @return индекс ячейки
+     */
     public Item findById(String id) {
         int index = indexOf(id);
         return index != -1 ? items[index] : null;
     }
 
+    /**
+     * Метод поиска заявки по имени
+     * @param key уникальный ключ
+     * @return
+     */
     public Item[] findByName(String key) {
+        Item[] result = new Item[position];
+        int count = 0;
         for (int index = 0; index < position; index++) {
             Item item = items[index];
             if (item.getName().equals(key)) {
-                return Arrays.copyOf(items, position);
+                result[index] = items[index];
+                count++;
             }
         }
-        return null;
-    }
+            return  Arrays.copyOf(items, count);
+        }
+    /**
+     * Метод изменения заявки
+     * @param id уникальный ключ
+     * @param item новая заявка
+     * @return
+     */
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
             if (items[index].getId().equals(id)) {

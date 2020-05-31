@@ -35,6 +35,16 @@ public class TrackerTest {
                 , is(result));
     }
     @Test
+    public void whenFindItemByName2() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("first");
+        Item item2 = new Item("second");
+        tracker.add(item1);
+        tracker.add(item2);
+        Item[] result = {item1};
+        assertThat(tracker.findByName("first"), is(result));
+    }
+    @Test
     public void whenReplace() {
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
