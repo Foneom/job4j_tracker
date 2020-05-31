@@ -12,8 +12,10 @@ public class Tracker {
      * Указатель ячейки новой заявки
      */
     private int position = 0;
+
     /**
      * Метод добавления новых зявок
+     *
      * @param item новая заявка
      * @return
      */
@@ -22,14 +24,17 @@ public class Tracker {
         items[position++] = item;
         return item;
     }
+
     /**
      * Генерация уникального ключа
+     *
      * @return
      */
     private String generateId() {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
+
     /**
      * Поиск ячейки по id
      *
@@ -46,15 +51,19 @@ public class Tracker {
         }
         return rsl;
     }
+
     /**
      * Получение всех заявок
+     *
      * @return
      */
     public Item[] findAll() {
         return Arrays.copyOf(items, position);
     }
+
     /**
      * Поиск заявки по id
+     *
      * @param id искомой ячейки
      * @return индекс ячейки
      */
@@ -65,6 +74,7 @@ public class Tracker {
 
     /**
      * Метод поиска заявки по имени
+     *
      * @param key уникальный ключ
      * @return
      */
@@ -78,21 +88,42 @@ public class Tracker {
                 count++;
             }
         }
-            return  Arrays.copyOf(items, count);
-        }
+        return Arrays.copyOf(items, count);
+    }
+
     /**
      * Метод изменения заявки
-     * @param id уникальный ключ
+     *
+     * @param id   уникальный ключ
      * @param item новая заявка
      * @return
      */
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
-            if (items[index].getId().equals(id)) {
-                item.setId(id);
-                items[index] = item;
-                return true;
-            }
+        if (items[index].getId().equals(id)) {
+            item.setId(id);
+            items[index] = item;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Метод удаления заявки
+     * @param id уникальный ключ
+     * @return
+     */
+    public boolean delete(String id) {
+        int index = indexOf(id);
+        int start = index + 1;
+        int distPos = index;
+        int size = position - index;
+        if (items[index].getId().equals(id)) {
+            items[position - 1] = null;
+            position--;
+            System.arraycopy(items, start, items, distPos, size);
+            return true;
+        }
         return false;
     }
 }
