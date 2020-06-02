@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.sql.SQLOutput;
+
 import java.util.Scanner;
 
 public class StartUI {
@@ -10,8 +10,14 @@ public class StartUI {
         Tracker tracker = new Tracker();
         new StartUI().init(scanner, tracker);
     }
-
+    /**
+     * Метод основного цкла программы
+     * @param scanner объект класса Scanner
+     * @param tracker объект Tracker - хранилиа заявок
+     */
     public void init(Scanner scanner, Tracker tracker) {
+        boolean run = true;
+        while (run) {
             this.showMenu();
             System.out.print("Select: ");
             int select = Integer.valueOf(scanner.nextLine());
@@ -23,35 +29,52 @@ public class StartUI {
                 tracker.add(item);
             } else if (select == 1) {
                 System.out.println("=== List of Items ===");
-                tracker.findAll();
+                for (Item item : tracker.findAll())
+                    System.out.println(item.getName());
             } else if (select == 2) {
                 System.out.println("=== Change a Item ===");
-                System.out.println("Enter name: ");
+                System.out.println("Enter name of Item you want to replace: ");
                 String name = scanner.nextLine();
-                System.out.println("Enter id: ");
-                String id = scanner.nextLine();
+                System.out.println("Enter new name of Item you want to replace: ");
+                String newItem = scanner.nextLine();
                 Item item = new Item(name);
-                tracker.replace(id, item);
+                Item newIt = new Item(newItem);
+                for (Item items : tracker.findAll())
+                if (tracker.replace(items.getId(), newIt) == true && items.getName().equals(item.getName())) {
+                    System.out.println("Item changed");
+                } else {
+                    System.out.println("Error");
+                }
             } else if (select == 3) {
                 System.out.println("=== Delete a Item ===");
-                System.out.println("Enter id: ");
-                String id = scanner.nextLine();
-                tracker.delete(id);
+                System.out.println("Enter name of Item you want to delete");
+                String name = scanner.nextLine();
+                Item item = new Item(name);
+                for (Item items : tracker.findAll())
+                if (tracker.delete(items.getId()) == true && items.getName().equals(item.getName())) {
+                    System.out.println("Item deleted");
+                }
             } else if (select == 4) {
                 System.out.println("=== Find Item by Id ===");
                 System.out.println("Enter id: ");
                 String id = scanner.nextLine();
-                tracker.findById(id);
+                Item item = tracker.findById(id);
+                    System.out.println(item.getName());
             } else if (select == 5) {
                 System.out.println("=== Find Item by name ===");
                 System.out.println("Enter name: ");
                 String name = scanner.nextLine();
-                tracker.findByName(name);
+                for (Item item : tracker.findByName(name))
+                    System.out.println(item.getName());
             } else if (select == 6) {
                 System.out.println("=== Good bye! ===");
                 System.exit(0);
             }
         }
+    }
+    /**
+     * Метод отобраения заглавного меню программы
+     */
     private void showMenu() {
         System.out.println("Menu." +
                 "\n0.Add new Item" +
