@@ -2,7 +2,6 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 import java.util.Random;
-
 public class Tracker {
     /**
      * Хранилище заявок
@@ -34,6 +33,7 @@ public class Tracker {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
+
     /**
      * Поиск ячейки по id
      *
@@ -70,7 +70,6 @@ public class Tracker {
         int index = indexOf(id);
         return index != -1 ? items[index] : null;
     }
-
     /**
      * Метод поиска заявки по имени
      *
@@ -79,17 +78,19 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         Item[] result = new Item[position];
-        int count = 0;
-        for (int index = 0; index < position; index++) {
+         int count = 0;
+        for (int index = 0; index < result.length; index++) {
             Item item = items[index];
             if (item.getName().equals(key)) {
-                result[index] = items[index];
+                result[index] = item;
                 count++;
             }
+            else {
+                return null;
+            }
         }
-        return Arrays.copyOf(items, count);
+        return Arrays.copyOf(result, count);
     }
-
     /**
      * Метод изменения заявки
      *

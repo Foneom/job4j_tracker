@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 
-
 public class StartUI {
 
     public static void main(String[] args) {
@@ -26,8 +25,9 @@ public class StartUI {
      */
     public static void listItem(Tracker tracker) {
         System.out.println("=== List of Items ===");
-        for (Item item : tracker.findAll())
+        for (Item item : tracker.findAll()) {
             System.out.println("id: " + item.getId() + " name: " + item.getName());
+        }
     }
     /**
      * Метод изменения заявки
@@ -38,14 +38,11 @@ public class StartUI {
         System.out.println("=== Change a Item ===");
         String id = input.askStr("Enter id of Item you want to replace: ");
         String newItem = input.askStr("Enter new name of Item you want to replace: ");
-        Item item = tracker.findById(id);
-        Item newIt = new Item(newItem);
-        tracker.replace(item.getId(), newIt);
-        if(item != null) {
+        if (tracker.replace(tracker.findById(id).getId(), new Item(newItem))) {
             System.out.println("Item changed");
-        }
-        else
+        } else {
             System.out.println("id wrong");
+        }
     }
     /**
      * Метод удаения заявки
@@ -54,10 +51,8 @@ public class StartUI {
      */
     public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete a Item ===");
-        String id = input.askStr("Enter id of Item you want to delete");
-        Item item = tracker.findById(id);
-        tracker.delete(item.getId());
-        if(item != null) {
+        String id = input.askStr("Enter id of Item you want to delete: ");
+        if(tracker.delete(tracker.findById(id).getId())) {
             System.out.println("Item deleted");
         }
         else
@@ -71,9 +66,8 @@ public class StartUI {
     public static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Find Item by Id ===");
         String id = input.askStr("Enter id: ");
-        Item item = tracker.findById(id);
-        if(item != null) {
-            System.out.println(item.getName());
+        if(tracker.findById(id) != null) {
+            System.out.println(tracker.findById(id).getName());
         }
         else
             System.out.println("id wrong");
@@ -86,8 +80,13 @@ public class StartUI {
     public static void findItemByName(Input input, Tracker tracker) {
         System.out.println("=== Find Item by name ===");
         String name = input.askStr("Enter name: ");
-        for (Item item : tracker.findByName(name))
-            System.out.println("id: " + item.getId() + " name: " + item.getName());
+        for (Item item : tracker.findByName(name)) {
+            if (tracker.findByName(name).length == 0) {
+                System.out.println("item no found");
+            } else {
+                System.out.println("id: " + item.getId() + " name: " + item.getName());
+            }
+        }
     }
     public static void exitProgram() {
         System.out.println("Good bye");
