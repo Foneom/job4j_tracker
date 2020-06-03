@@ -82,9 +82,6 @@ public class Tracker {
                 result[index] = item;
                 count++;
             }
-            else {
-                return null;
-            }
         }
         return Arrays.copyOf(result, count);
     }
