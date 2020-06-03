@@ -33,7 +33,6 @@ public class Tracker {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
-
     /**
      * Поиск ячейки по id
      *
@@ -50,7 +49,6 @@ public class Tracker {
         }
         return rsl;
     }
-
     /**
      * Получение всех заявок
      *
@@ -59,7 +57,6 @@ public class Tracker {
     public Item[] findAll() {
         return Arrays.copyOf(items, position);
     }
-
     /**
      * Поиск заявки по id
      *
