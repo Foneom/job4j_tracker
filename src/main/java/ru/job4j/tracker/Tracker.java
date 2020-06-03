@@ -34,7 +34,6 @@ public class Tracker {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
-
     /**
      * Поиск ячейки по id
      *
