@@ -5,16 +5,17 @@ public class FindItemById implements UserAction {
     public String name() {
         return "Searching Items by id";
     }
+
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("=== Searching Items by id ===");
         String id = input.askStr("Enter id: ");
-        if (tracker.findById(id) != null) {
-            System.out.println(tracker.findById(id).getName());
-            return true;
+        Item item = tracker.findById(id);
+               if (item != null) {
+            System.out.println(item.getName());
         } else {
-            System.out.println("id wrong");
-            return false;
+            System.out.println("Id not founded");
         }
+        return true;
     }
 }
