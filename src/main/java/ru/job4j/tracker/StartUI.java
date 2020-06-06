@@ -8,6 +8,7 @@ public class StartUI {
     public StartUI(Output out) {
         this.out = out;
     }
+
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ConsoleInput();
