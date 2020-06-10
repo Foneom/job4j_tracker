@@ -7,9 +7,10 @@ public class UserStore {
             user = users[index];
             if (user.getUsername().equals(login)) {
                 System.out.println("User found");
-                break;
             }
-                throw new UserNotFoundException("User not found");
+        }
+        if (user == null) {
+            throw new UserNotFoundException("User not found");
         }
         return user;
     }
