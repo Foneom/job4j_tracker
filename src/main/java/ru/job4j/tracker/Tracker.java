@@ -1,17 +1,20 @@
 package ru.job4j.tracker;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
 public class Tracker {
     /**
      * Хранилище заявок
      */
-    private final Item[] items = new Item[100];
+    List<Item> items = new ArrayList<>();
+  //  private final Item[] items = new Item[100];
     /**
      * Указатель ячейки новой заявки
      */
-    private int position = 0;
-
+  //  private int position = 0;
     /**
      * Метод добавления новых зявок
      *
@@ -20,7 +23,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(generateId());
-        items[position++] = item;
+        //items[position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -41,10 +45,15 @@ public class Tracker {
      */
     private int indexOf(String id) {
         int rsl = -1;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
-                rsl = index;
+        for(Item item : items) {
+            if(item.getId().equals(id)) {
+                rsl = items.indexOf(item);
                 break;
+
+     //   for (int index = 0; index < position; index++) {
+       //     if (items[index].getId().equals(id)) {
+        //        rsl = index;
+          //      break;
             }
         }
         return rsl;
@@ -54,8 +63,10 @@ public class Tracker {
      *
      * @return
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(items, position);
+   // public Item[] findAll() {
+    public List<Item> findAll() {
+        //return Arrays.copyOf(items, position;
+        return items;
     }
     /**
      * Поиск заявки по id
@@ -65,7 +76,7 @@ public class Tracker {
      */
     public Item findById(String id) {
         int index = indexOf(id);
-        return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(index) : null;
     }
     /**
      * Метод поиска заявки по имени
@@ -73,17 +84,26 @@ public class Tracker {
      * @param key уникальный ключ
      * @return
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[position];
-         int count = 0;
-        for (int index = 0; index < result.length; index++) {
-            Item item = items[index];
-            if (item.getName().equals(key)) {
-                result[count++] = item;
-            }
-        }
-        return Arrays.copyOf(result, count);
-    }
+    //public Item[] findByName(String key) {
+            public List<Item> findByName(String key) {
+                List<Item> result = new ArrayList<>();
+                for(Item item : items) {
+                    if (item.getName().equals(key)) {
+                         result.add(item);
+                    }
+                }
+                    return result;
+                }
+
+        //Item[] result = new Item[position];
+      //   int count = 0;
+      //  for (int index = 0; index < result.length; index++) {
+       //     Item item = items[index];
+       //     if (item.getName().equals(key)) {
+         //       result[count++] = item;
+
+      //  return Arrays.copyOf(result, count);
+
     /**
      * Метод изменения заявки
      *
@@ -96,7 +116,9 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             item.setId(id);
-            items[index] = item;
+           //items[index] = item;
+            items.set(index, item);
+
         }
         return rsl;
     }
@@ -105,17 +127,21 @@ public class Tracker {
      * @param id уникальный ключ
      * @return
      */
+
     public boolean delete(String id) {
         int index = indexOf(id);
-        int start = index + 1;
-        int distPos = index;
-        int size = position - index;
+       // int start = index + 1;
+        //int distPos = index;
+       // int size = position - index;
         boolean rsl = index != -1;
         if (rsl) {
-            items[position - 1] = null;
-            position--;
-            System.arraycopy(items, start, items, distPos, size);
+            items.remove(index);
+        //    items[position - 1] = null;
+       //     position--;
+         //   System.arraycopy(items, start, items, distPos, size);
         }
         return rsl;
     }
+
+
 }

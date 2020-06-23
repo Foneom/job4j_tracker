@@ -2,10 +2,17 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
+    /**
+     * Тест на добавление заявки
+     */
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
@@ -15,25 +22,28 @@ public class TrackerTest {
         assertThat(result.getName(), is(item.getName()));
     }
     /**
-     * Тест метода вывода списка заявок
+     * Тест метода вывода списка всех заявок
      */
     @Test
     public void whenFindAll() {
         Tracker tracker = new Tracker();
         Item item = new Item("f");
         tracker.add(item);
-        Item[] result = {item};
+        List<Item> expect = Arrays.asList(item);
         assertThat(tracker.findAll()
-                , is(result));
+                , is(expect));
     }
+    /**
+     * Тест поиска заявки по имени
+     */
     @Test
     public void whenFindItemByName() {
         Tracker tracker = new Tracker();
         Item item = new Item("f");
         tracker.add(item);
-        Item[] result = {item};
+        List<Item> expect = Arrays.asList(item);
         assertThat(tracker.findByName(item.getName())
-                , is(result));
+                , is(expect));
     }
     /**
      * Тест меода поиска заявки по ключу
@@ -45,8 +55,8 @@ public class TrackerTest {
         Item item2 = new Item("second");
         tracker.add(item1);
         tracker.add(item2);
-        Item[] result = {item1};
-        assertThat(tracker.findByName("first"), is(result));
+        List<Item> expect = Arrays.asList(item1);
+        assertThat(tracker.findByName("first"), is(expect));
     }
     /**
      * Тест метода замены заявки
@@ -74,7 +84,7 @@ public class TrackerTest {
         Item item3 = new Item("test3");
         tracker.add(item3);
         tracker.delete(item3.getId());
-        Item[] result = {item1, item2};
-        assertThat(tracker.findAll(), is(result));
+        List<Item> expect = Arrays.asList(item1, item2);
+        assertThat(tracker.findAll(), is(expect));
     }
 }
