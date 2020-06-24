@@ -11,7 +11,10 @@ public class StartUI {
     public StartUI(Output out) {
         this.out = out;
     }
-
+    /**
+     * Запуск программы
+     * @param args
+     */
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
@@ -24,19 +27,14 @@ public class StartUI {
         actions.add(new FindItemById());
         actions.add(new FindItemByName());
         actions.add(new ExitAction());
-                /**
-        UserAction[] actions = {
-                new CreateAction(output),
-                new ShowListAction(),
-                new DeleteAction(),
-                new ReplaceAction(),
-                new FindItemById(),
-                new FindItemByName(),
-                new ExitAction()
-        };
-                 */
         new StartUI(output).init(input, tracker, actions);
     }
+    /**
+     * Основной цикл программы
+     * @param input - входные данные
+     * @param tracker - хранилище данных
+     * @param actions - действия с заявками
+     */
     public void init(Input input, Tracker tracker, List<UserAction> actions) {
 boolean run = true;
 while (run) {
@@ -51,6 +49,10 @@ while (run) {
     run = action.execute(input, tracker);
 }
     }
+    /**
+     * Инициализатор главного меню
+     * @param actions - пункты меню
+     */
     private void showMenu(List<UserAction> actions) {
         out.println("Menu. ");
         for (int index = 0; index < actions.size(); index++) {
