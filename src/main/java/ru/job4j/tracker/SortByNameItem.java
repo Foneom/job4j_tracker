@@ -10,7 +10,6 @@ public class SortByNameItem implements Comparator<Item> {
     public int compare(Item o1, Item o2) {
         return o1.getName().compareTo(o2.getName());
     }
-
     public static void main(String[] args) {
         List<Item> items = Arrays.asList(
                 new Item("second"),

@@ -32,15 +32,15 @@ public class Item implements Comparator<Item> {
     }
 
     @Override
+    public int compare(Item o1, Item o2) {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Item{" +
                 "name='" + name + '\'' +
                 '}';
-    }
-
-    @Override
-    public int compare(Item o1, Item o2) {
-        return 0;
     }
 
     public static void main(String[] args) {
