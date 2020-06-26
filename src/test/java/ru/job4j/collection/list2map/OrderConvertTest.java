@@ -1,6 +1,8 @@
 package ru.job4j.collection.list2map;
 
 import org.junit.Test;
+import ru.job4j.block_3collections.list2map.Order;
+import ru.job4j.block_3collections.list2map.OrderConvert;
 
 import java.util.ArrayList;
 import java.util.HashMap;
