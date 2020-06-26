@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
-public class Item {
+import java.util.Comparator;
+
+public class Item implements Comparator<Item> {
 
     public Item() {
         System.out.println("load item");
@@ -27,6 +29,18 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compare(Item o1, Item o2) {
+        return 0;
     }
 
     public static void main(String[] args) {
