@@ -50,12 +50,14 @@ public class BankService {
      public Account findByRequisite(String passport, String requisite) {
         Account account = null;
         User user = findByPassport(passport);
-         List<Account> accounts = users.get(user);
-         for (Account key : accounts)
-             if(key.getRequisite().contains(requisite)) {
-                 account = key;
-                 break;
-             }
+         if (user != null) {
+             List<Account> accounts = users.get(user);
+             for (Account key : accounts)
+                 if (key.getRequisite().contains(requisite)) {
+                     account = key;
+                     break;
+                 }
+         }
          return account;
      }
     /**
@@ -72,12 +74,14 @@ public class BankService {
          boolean rsl = false;
          Account src = findByRequisite(srcPassport, srcRequisite);
          Account dest = findByRequisite(destPassport, destRequisite);
-         if (src.getBalance() >= amount && amount >= 0) {
-             double newSrcBalance = src.getBalance() - amount;
-             double newDestBalance = dest.getBalance() + amount;
-             src.setBalance(newSrcBalance);
-             dest.setBalance(newDestBalance);
-             rsl = true;
+         if (src != null && dest != null) {
+             if (src.getBalance() >= amount && amount >= 0) {
+                 double newSrcBalance = src.getBalance() - amount;
+                 double newDestBalance = dest.getBalance() + amount;
+                 src.setBalance(newSrcBalance);
+                 dest.setBalance(newDestBalance);
+                 rsl = true;
+             }
          }
          return rsl;
      }
