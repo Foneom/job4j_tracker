@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.Comparator;
 
-public class Item implements Comparator<Item> {
+public class Item {
 
     public Item() {
         System.out.println("load item");
@@ -32,11 +32,6 @@ public class Item implements Comparator<Item> {
     }
 
     @Override
-    public int compare(Item o1, Item o2) {
-        return 0;
-    }
-
-    @Override
     public String toString() {
         return "Item{" +
                 "name='" + name + '\'' +
@@ -47,3 +42,4 @@ public class Item implements Comparator<Item> {
       Item item = new Item();
         }
     }
+
