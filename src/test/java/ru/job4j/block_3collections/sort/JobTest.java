@@ -17,9 +17,9 @@ public class JobTest {
             .thenComparing(new JobDescByPriority());
     int rsl = cmpDescNamePriority.compare(
             new Job("Impl task", 0),
-            new Job("Fix bug", 1)
+            new Job("Impl task", 1)
     );
-    assertThat(rsl, lessThan(0));
+    assertThat(rsl, greaterThan(0));
 }
     /**
      * Тест комбинированного компаратора по убыванию приоритета и имени
@@ -30,9 +30,9 @@ public class JobTest {
                 .thenComparing(new JobDescByName());
         int rsl = cmpDescNamePriority.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Fix bug", 0)
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl, lessThan(0));
     }
     /**
      * Тест комбинированного компаратора по возрастанию имени и приоритета
@@ -42,10 +42,10 @@ public class JobTest {
         Comparator<Job> cmpIncreaseNamePriority = new JobIncreaseByName()
                 .thenComparing(new JobIncreaseByPriority());
         int rsl = cmpIncreaseNamePriority.compare(
-                new Job("Impl task", 0),
+                new Job("Fix bug", 0),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl, lessThan(0));
     }
     /**
      * Тест комбинированного компаратора по возрастанию приоритета и имени
@@ -56,9 +56,9 @@ public class JobTest {
                 .thenComparing(new JobIncreaseByName());
         int rsl = cmpIncreaseNamePriority.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Fix bug", 0)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl, greaterThan(0));
     }
     /**
      * По имени и по убыванию
