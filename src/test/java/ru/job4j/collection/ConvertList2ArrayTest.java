@@ -3,7 +3,7 @@ package ru.job4j.collection;
 import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
-import ru.job4j.block_3collections.ConvertList2Array;
+import ru.job4j.block3collections.ConvertList2Array;
 
 import java.util.Arrays;
 

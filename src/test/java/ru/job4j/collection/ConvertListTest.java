@@ -1,7 +1,7 @@
 package ru.job4j.collection;
 
 import org.junit.Test;
-import ru.job4j.block_3collections.ConvertList;
+import ru.job4j.block3collections.ConvertList;
 
 import java.util.ArrayList;
 import java.util.Arrays;

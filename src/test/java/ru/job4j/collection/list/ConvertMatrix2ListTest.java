@@ -2,7 +2,7 @@ package ru.job4j.collection.list;
 
 
 import org.junit.Test;
-import ru.job4j.block_3collections.list.ConvertMatrix2List;
+import ru.job4j.block3collections.list.ConvertMatrix2List;
 
 import java.util.Arrays;
 import java.util.List;

@@ -21,7 +21,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Item"));
         Input in = new StubInput(
-                new String[] {"0", item.getId(), "1"}
+                new String[]{"0", item.getId(), "1"}
         );
         List<UserAction> actions = new ArrayList<>();
         actions.add(new FindItemById());
@@ -29,6 +29,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(item));
     }
+
     /**
      * Тест поиска зявки по имени
      */
@@ -36,11 +37,11 @@ public class StartUITest {
     public void whenFindItemByName() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-       Item item = tracker.add(new Item("Item"));
+        Item item = tracker.add(new Item("Item"));
         List<Item> expected = new ArrayList<>();
         expected.add(item);
         Input in = new StubInput(
-                new String[] {"0", item.getName(), "1"}
+                new String[]{"0", item.getName(), "1"}
         );
         List<UserAction> actions = new ArrayList<>();
         actions.add(new FindItemByName());
@@ -48,41 +49,44 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findByName(item.getName()), is(expected));
     }
+
     /**
      * Тест изменения заявки
      */
-        @Test
-        public void whenReplaceItem() {
-            Output out = new StubOutput();
-            Tracker tracker = new Tracker();
-            Item item = tracker.add(new Item("Replaced item"));
-            String replacedName = "New item name";
-            Input in = new StubInput(
-                    new String[] {"0", item.getId(), replacedName, "1"}
-            );
-            List<UserAction> actions = new ArrayList<>();
-            actions.add(new ReplaceAction());
-            actions.add(new ExitAction());
-            new StartUI(out).init(in, tracker, actions);
-            assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
-        }
+    @Test
+    public void whenReplaceItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Replaced item"));
+        String replacedName = "New item name";
+        Input in = new StubInput(
+                new String[]{"0", item.getId(), replacedName, "1"}
+        );
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ReplaceAction());
+        actions.add(new ExitAction());
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+    }
+
     /**
      * Тест удаления заявки
      */
     @Test
-public void whenDeleteItem() {
-    Output out = new StubOutput();
-    Tracker tracker = new Tracker();
-    Item item = tracker.add(new Item("Deleted item"));
-    Input in = new StubInput(
-            new String[] {"0", item.getId(), "1"}
-    );
+    public void whenDeleteItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Deleted item"));
+        Input in = new StubInput(
+                new String[]{"0", item.getId(), "1"}
+        );
         List<UserAction> actions = new ArrayList<>();
         actions.add(new DeleteAction());
         actions.add(new ExitAction());
-    new StartUI(out).init(in, tracker, actions);
-    assertThat(tracker.findById(item.getId()), is(nullValue()));
-}
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(nullValue()));
+    }
+
     /**
      * Тест создания заявки
      */
@@ -91,14 +95,15 @@ public void whenDeleteItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Input in = new StubInput(
-                new String[] {"0","new Item", "1"}
+                new String[]{"0", "new Item", "1"}
         );
         List<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
         actions.add(new ExitAction());
-       new StartUI(out).init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll(), is("new Item"));
     }
+
     /**
      * Тест выхода из программы
      */
@@ -106,17 +111,18 @@ public void whenDeleteItem() {
     public void whenExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0"}
+                new String[]{"0"}
         );
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
         actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu. " + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu. " + System.lineSeparator()
+                        + "0. Exit" + System.lineSeparator()
         ));
     }
+
     /**
      * Тест неправильного ввода данных
      */
@@ -124,7 +130,7 @@ public void whenDeleteItem() {
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"1", "0"}
+                new String[]{"1", "0"}
         );
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();

@@ -4,11 +4,13 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 public class Tracker {
     /**
      * Хранилище заявок
      */
     private final List<Item> items = new ArrayList<>();
+
     /**
      * Метод добавления новых зявок
      *
@@ -20,6 +22,7 @@ public class Tracker {
         items.add(item);
         return item;
     }
+
     /**
      * Генерация уникального ключа
      *
@@ -29,6 +32,7 @@ public class Tracker {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
+
     /**
      * Поиск ячейки по id
      *
@@ -37,14 +41,15 @@ public class Tracker {
      */
     private int indexOf(String id) {
         int rsl = -1;
-        for(int i = 0; i < items.size(); i++) {
-            if(items.get(i).getId().equals(id)) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
                 rsl = i;
                 break;
             }
         }
         return rsl;
     }
+
     /**
      * Получение всех заявок
      *
@@ -53,6 +58,7 @@ public class Tracker {
     public List<Item> findAll() {
         return items;
     }
+
     /**
      * Поиск заявки по id
      *
@@ -63,21 +69,23 @@ public class Tracker {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
+
     /**
      * Метод поиска заявки по имени
      *
      * @param key уникальный ключ
      * @return
      */
-            public List<Item> findByName(String key) {
-                List<Item> result = new ArrayList<>();
-                for(Item item : items) {
-                    if (item.getName().equals(key)) {
-                         result.add(item);
-                    }
-                }
-                    return result;
-                }
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
     /**
      * Метод изменения заявки
      *
@@ -95,8 +103,10 @@ public class Tracker {
         }
         return rsl;
     }
+
     /**
      * Метод удаления заявки
+     *
      * @param id уникальный ключ
      * @return
      */

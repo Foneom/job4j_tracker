@@ -33,13 +33,13 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Item{"
+                + "name='" + name + '\''
+                + '}';
     }
 
     public static void main(String[] args) {
-      Item item = new Item();
-        }
+        Item item = new Item();
     }
+}
 
