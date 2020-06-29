@@ -33,9 +33,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{"
-                + "name='" + name + '\''
-                + '}';
+        return name;
     }
 
     public static void main(String[] args) {

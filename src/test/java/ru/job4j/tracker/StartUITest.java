@@ -11,7 +11,6 @@ import static org.junit.Assert.assertThat;
 
 
 public class StartUITest {
-
     /**
      * Тест поиска заявки по id
      */
@@ -101,9 +100,8 @@ public class StartUITest {
         actions.add(new CreateAction(out));
         actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll(), is("new Item"));
+        assertThat(tracker.findAll().toString(), is("[new Item]"));
     }
-
     /**
      * Тест выхода из программы
      */
