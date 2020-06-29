@@ -22,7 +22,7 @@ public class LexSort implements Comparator<String> {
          * если равны, то большей считается длинная сторка
          */
         if (leftLineInt != rightLineInt) {
-            Integer.compare(leftLineInt, rightLineInt);
+           return Integer.compare(leftLineInt, rightLineInt);
         }
         return diff;
     }
