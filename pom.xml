@@ -44,7 +44,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                    <argLine>-Xms512m -Xmx512m  -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
                 </configuration>
             </plugin>
             <plugin>
