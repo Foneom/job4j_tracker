@@ -17,7 +17,10 @@ public class FI {
                 new Attachment("image 3", 120),
                 new Attachment("image 2", 23)
         };
-        Comparator<Attachment> comparator = (o1, o2) -> o1.getName().compareTo(o2.getName());
+        Comparator<Attachment> comparator = (o1, o2) -> {
+            System.out.println("compare - " + o2.getName() + " : " + o1.getName());
+            return o2.getName().compareTo(o1.getName());
+        };
         Arrays.sort(atts, comparator);
         System.out.println(Arrays.toString(atts));
     }
