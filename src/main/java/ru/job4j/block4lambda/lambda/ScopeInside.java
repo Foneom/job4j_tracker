@@ -15,7 +15,6 @@ public class ScopeInside {
         }
         System.out.println(total);
     }
-
     private static Integer add(Supplier<Integer> calc) {
         return calc.get();
     }
