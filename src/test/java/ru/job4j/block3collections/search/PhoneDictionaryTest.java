@@ -15,7 +15,10 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        ArrayList<Person> persons = phones.find("Petr");
-        assertThat(persons.get(0).getSurname(), is("Arsentev"));
+        phones.add(
+                new Person("Kirill", "Ivanov", "12345", "Moskva")
+        );
+        ArrayList<Person> persons = phones.find("Kirill");
+        assertThat(persons.get(0).getSurname(), is("Ivanov"));
     }
 }
