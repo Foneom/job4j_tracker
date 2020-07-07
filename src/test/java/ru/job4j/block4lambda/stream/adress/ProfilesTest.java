@@ -22,5 +22,20 @@ public class ProfilesTest {
         List<Adress> expected = Profiles.collect(result);
         assertThat(profiles, is(expected));
     }
-
+    @Test
+    public void whenListSorted() {
+        List<Profile> profile = Arrays.asList(
+                new Profile(new Adress("Moskva", "Koloncova", 2, 45)),
+                new Profile(new Adress("Moskva", "Koloncova", 2, 45)),
+                new Profile(new Adress("Moskva", "Petrova", 2, 45)),
+                new Profile(new Adress("Saratov", "Lenina", 5, 65))
+        );
+        List<Adress> result = Arrays.asList(
+                new Adress("Moskva", "Koloncova", 2, 45),
+                new Adress("Moskva", "Petrova", 2, 45),
+                new Adress("Saratov", "Lenina", 5, 65)
+        );
+        List<Adress> expected = Profiles.collect(profile);
+        assertThat(result, is(expected));
+    }
 }
