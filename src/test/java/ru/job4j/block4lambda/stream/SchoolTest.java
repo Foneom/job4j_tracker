@@ -1,6 +1,8 @@
 package ru.job4j.block4lambda.stream;
 
 import org.junit.Test;
+import ru.job4j.block4lambda.stream.student.School;
+import ru.job4j.block4lambda.stream.student.Student;
 
 import java.util.Arrays;
 import java.util.List;

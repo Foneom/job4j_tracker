@@ -1,4 +1,4 @@
-package ru.job4j.block4lambda.stream;
+package ru.job4j.block4lambda.stream.student;
 
 import java.util.Objects;
 
