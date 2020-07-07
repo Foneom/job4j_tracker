@@ -22,13 +22,13 @@ public class School {
 
     public static List<Student> classB(List<Student> students) {
         Predicate<Student> getStudentsClassB = student ->
-                student.getScore() >= 50 && student.getScore() <= 70;
+                student.getScore() >= 50 && student.getScore() < 70;
         return collect(students, getStudentsClassB);
     }
 
     public static List<Student> classV(List<Student> students) {
         Predicate<Student> getStudentsClassV = student ->
-                student.getScore() >= 0 && student.getScore() <= 50;
+                student.getScore() >= 0 && student.getScore() < 50;
         return collect(students, getStudentsClassV);
     }
 
