@@ -3,14 +3,14 @@ package ru.job4j.block3collections.dopTask;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class ParenthesesTest {
 
     @Test
     public void whenValidInner() {
         assertThat(
-                Parentheses.valid(new char[] {'(', '(', ')', ')'}),
+                Parentheses.valid(new char[]{'(', '(', '(', ')', ')', ')'}),
                 is(true)
         );
     }
@@ -18,7 +18,7 @@ public class ParenthesesTest {
     @Test
     public void whenValidSeq() {
         assertThat(
-                Parentheses.valid(new char[] {'(', ')', '(', ')'}),
+                Parentheses.valid(new char[]{'(', ')', '(', ')', '(', ')'}),
                 is(true)
         );
     }
@@ -26,7 +26,7 @@ public class ParenthesesTest {
     @Test
     public void whenInValidInner() {
         assertThat(
-                Parentheses.valid(new char[] {')', ')', '(', '('}),
+                Parentheses.valid(new char[]{')', ')', '(', '('}),
                 is(false)
         );
     }
@@ -34,7 +34,7 @@ public class ParenthesesTest {
     @Test
     public void whenInValidSeq() {
         assertThat(
-                Parentheses.valid(new char[] {'(', ')', '(', '('}),
+                Parentheses.valid(new char[]{'(', ')', '(', '('}),
                 is(false)
         );
     }
