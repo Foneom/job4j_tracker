@@ -18,9 +18,8 @@ public class BankService {
      * @param user - пользователь
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<>());
+        users.computeIfAbsent(user, key -> new ArrayList<>());
     }
-
     /**
      * Метод добавления нового счета в систему
      *
@@ -33,7 +32,6 @@ public class BankService {
             users.get(user).add(account);
         }
     }
-
     /**
      * Метод поиска пользователя по паспорту
      *
@@ -41,16 +39,14 @@ public class BankService {
      * @return
      */
     public User findByPassport(String passport) {
-        User user = null;
-        for (User key : users.keySet()) {
-            if (key.getPassport().equals(passport)) {
-                user = key;
-                break;
-            }
-        }
+        User user = users.keySet()
+                .stream()
+                .filter(el -> el.getPassport()
+                .equals(passport))
+                .findFirst()
+                .orElse(null);
         return user;
     }
-
     /**
      * Метод поиска счета по реквизитам
      *
@@ -59,20 +55,16 @@ public class BankService {
      * @return
      */
     public Account findByRequisite(String passport, String requisite) {
-        Account account = null;
         User user = findByPassport(passport);
         if (user != null) {
-            List<Account> accounts = users.get(user);
-            for (Account key : accounts) {
-                if (key.getRequisite().contains(requisite)) {
-                    account = key;
-                    break;
-                }
-            }
+            Account account = this.users.get(user)
+                    .stream()
+                    .filter(e -> e.getRequisite().equals(requisite))
+                    .findFirst().orElse(null);
+            return account;
         }
-        return account;
+        return null;
     }
-
     /**
      * Метод перечисления денег с одного счета на другой
      *
