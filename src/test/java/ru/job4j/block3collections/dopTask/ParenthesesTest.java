@@ -18,7 +18,7 @@ public class ParenthesesTest {
     @Test
     public void whenValidSeq() {
         assertThat(
-                Parentheses.valid(new char[]{'(', ')', '(', ')', '(', ')'}),
+                Parentheses.valid(new char[]{'(', ')', '(', ')', '(', ')', '(', ')'}),
                 is(true)
         );
     }

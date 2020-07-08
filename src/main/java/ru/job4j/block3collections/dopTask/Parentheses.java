@@ -16,7 +16,7 @@ public class Parentheses {
                         stack.push(c);
                         break;
                     case ')':
-                        if (stack.isEmpty() || !stack.removeFirst().equals('(')) {
+                        if (stack.isEmpty() || stack.pop() != '(') {
                             return false;
                         }
                     default:
