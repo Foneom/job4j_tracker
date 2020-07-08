@@ -19,7 +19,7 @@ public class StudentList {
     }
 
     public static void main(String[] args) {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student(75, "Ivanov"),
                 new Student(10, "Pteerov"),
                 new Student(50, "Sidorov"),
