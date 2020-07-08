@@ -21,7 +21,7 @@ public class PhoneDictionary {
         Predicate<Person> phoneContainsKey = person -> person.getPhone().contains(key);
         Predicate<Person> addressContainsKey = person -> person.getAddress().contains(key);
         ArrayList<Person> result = new ArrayList<>();
-        for (Person person : persons) {
+        for (var person : persons) {
         boolean coincidence = nameContainsKey.
                 or(surnameContainsKey.
                         or(phoneContainsKey.
