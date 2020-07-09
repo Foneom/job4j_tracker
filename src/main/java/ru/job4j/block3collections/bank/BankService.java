@@ -15,7 +15,7 @@ public class BankService {
      * @param user - пользователь
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<>());
+        users.computeIfAbsent(user, key -> new ArrayList<>());
     }
 
     /**
@@ -38,14 +38,13 @@ public class BankService {
      * @return
      */
     public Optional<User> findByPassport(String passport) {
-        Optional<User> rsl = Optional.empty();
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                rsl = Optional.of(user);
-                break;
-            }
-        }
-        return rsl;
+        Optional<User> user = Optional.ofNullable(users.keySet()
+                .stream()
+                .filter(el -> el.getPassport()
+                        .equals(passport))
+                .findFirst()
+                .orElse(null));
+        return user;
     }
 
     /**
@@ -55,21 +54,16 @@ public class BankService {
      * @param requisite - реквизиты
      * @return
      */
-    public Optional<Account> findByRequisite(String passport, String requisite) {
-        Optional<Account> account = Optional.empty();
+    public Account findByRequisite(String passport, String requisite) {
         Optional<User> user = findByPassport(passport);
         if (user.isPresent()) {
-            List<Account> accounts = users.get(user);
-            for (Account key : accounts) {
-                if (key.getRequisite().contains(requisite)) {
-                    account = Optional.of(key);
-                    break;
-                }
-            }
+            return this.users.get(user)
+                    .stream()
+                    .filter(e -> e.getRequisite().equals(requisite))
+                    .findFirst().orElse(null);
         }
-        return account;
+        return null;
     }
-
     /**
      * Метод перечисления денег с одного счета на другой
      *
@@ -81,16 +75,16 @@ public class BankService {
      * @return
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
-                                String destPassport, String destRequisite, double amount) {
+                                 String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-        Optional<Account> src = findByRequisite(srcPassport, srcRequisite);
-        Optional<Account> dest = findByRequisite(destPassport, destRequisite);
-        if (src.isPresent() && dest.isPresent()) {
-            if (src.get().getBalance() >= amount && amount >= 0) {
-                double newSrcBalance = src.get().getBalance() - amount;
-                double newDestBalance = dest.get().getBalance() + amount;
-                src.get().setBalance(newSrcBalance);
-                dest.get().setBalance(newDestBalance);
+        Account src = findByRequisite(srcPassport, srcRequisite);
+        Account dest = findByRequisite(destPassport, destRequisite);
+        if (src != null && dest != null) {
+            if (src.getBalance() >= amount && amount >= 0) {
+                double newSrcBalance = src.getBalance() - amount;
+                double newDestBalance = dest.getBalance() + amount;
+                src.setBalance(newSrcBalance);
+                dest.setBalance(newDestBalance);
                 rsl = true;
             }
         }
