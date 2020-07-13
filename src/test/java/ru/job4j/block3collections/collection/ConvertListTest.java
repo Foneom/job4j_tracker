@@ -1,10 +1,9 @@
-package ru.job4j.collection;
+package ru.job4j.block3collections.collection;
 
 import org.junit.Test;
 import ru.job4j.block3collections.ConvertList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;

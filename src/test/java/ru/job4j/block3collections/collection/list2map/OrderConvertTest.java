@@ -1,4 +1,4 @@
-package ru.job4j.collection.list2map;
+package ru.job4j.block3collections.collection.list2map;
 
 import org.junit.Test;
 import ru.job4j.block3collections.list2map.Order;

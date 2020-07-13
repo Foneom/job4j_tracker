@@ -1,4 +1,4 @@
-package ru.job4j.collection.passportoffice;
+package ru.job4j.block3collections.collection.passportoffice;
 
 import org.junit.Test;
 import ru.job4j.block3collections.passportoffice.Citizen;

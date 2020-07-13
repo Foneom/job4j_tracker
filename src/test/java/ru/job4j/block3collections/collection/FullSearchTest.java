@@ -1,10 +1,9 @@
-package ru.job4j.collection;
+package ru.job4j.block3collections.collection;
 
 import org.junit.Test;
 import ru.job4j.block3collections.FullSearch;
 import ru.job4j.block3collections.Task;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
