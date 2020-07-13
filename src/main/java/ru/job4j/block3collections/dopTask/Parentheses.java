@@ -8,24 +8,15 @@ import java.util.Deque;
  */
 public class Parentheses {
     public static boolean valid(char[] brаckets) throws StackOverflowError {
-        try {
-            Deque<Character> stack = new ArrayDeque<>();
-            for (char c : brаckets) {
-                switch (c) {
-                    case '(':
-                        stack.push(c);
-                        break;
-                    case ')':
-                        if (stack.isEmpty() || stack.pop() != '(') {
-                            return false;
-                        }
-                    default:
-                        break;
-                }
+        Deque<Character> stack = new ArrayDeque<>();
+        for (char c : brаckets) {
+            if (c == '(') {
+                stack.push(c);
+            } else if (stack.isEmpty() || stack.pop() != '(') {
+                return false;
             }
-            return stack.isEmpty();
-        } catch (StackOverflowError e) {
-            return false;
         }
+        return stack.isEmpty();
     }
 }
+
