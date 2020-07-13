@@ -37,12 +37,10 @@ public class BankServiceOptionalStream {
      * @return
      */
     public Optional<User> findByPassport(String passport) {
-        Optional<User> user = Optional.ofNullable(users.keySet()
+        return users.keySet()
                 .stream()
                 .filter(el -> el.getPassport().equals(passport))
-                .findFirst()
-                .orElse(null));
-        return user;
+                .findFirst();
     }
 
     /**
@@ -54,14 +52,10 @@ public class BankServiceOptionalStream {
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<User> user = findByPassport(passport);
-        if (user.isPresent()) {
-            Optional<Account> account = Optional.ofNullable(this.users.get(user.get())
-                    .stream()
-                    .filter(e -> e.getRequisite().equals(requisite))
-                    .findFirst().orElse(null));
-            return account;
-        }
-        return null;
+        return user.flatMap(value -> this.users.get(value)
+                .stream()
+                .filter(e -> e.getRequisite().equals(requisite))
+                .findFirst());
     }
 
     /**
@@ -79,7 +73,7 @@ public class BankServiceOptionalStream {
         boolean rsl = false;
         Optional<Account> src = findByRequisite(srcPassport, srcRequisite);
         Optional<Account> dest = findByRequisite(destPassport, destRequisite);
-        if (src != null && dest != null) {
+        if (src.isPresent() && dest.isPresent()) {
             if (src.get().getBalance() >= amount && amount >= 0) {
                 double newSrcBalance = src.get().getBalance() - amount;
                 double newDestBalance = dest.get().getBalance() + amount;

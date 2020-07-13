@@ -24,7 +24,7 @@ public class BankServiceOptionalStreamTest {
         BankServiceOptionalStream bank = new BankServiceOptionalStream();
         bank.addUser(user);
         bank.addAccount(user.getPassport(), new Account("5546", 150D));
-        assertThat(bank.findByPassport("34"), is(nullValue()));
+        assertThat(bank.findByPassport("34"), is(Optional.empty()));
     }
 
     @Test
