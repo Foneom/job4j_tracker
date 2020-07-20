@@ -17,7 +17,6 @@ public class FlatIt {
         Iterable<Integer> iterable = it::next;
             return StreamSupport
                     .stream(iterable.spliterator(), false)
-                    .filter(integer -> it.hasNext())
                     .collect(Collectors.toList());
     }
 }
