@@ -13,7 +13,7 @@ public class BankServiceOptionalList {
      * @param user - пользователь
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<>());
+        users.computeIfAbsent(user, key -> new ArrayList<>());
     }
 
     /**

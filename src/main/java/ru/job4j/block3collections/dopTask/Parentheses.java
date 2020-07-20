@@ -19,4 +19,3 @@ public class Parentheses {
         return stack.isEmpty();
     }
 }
-

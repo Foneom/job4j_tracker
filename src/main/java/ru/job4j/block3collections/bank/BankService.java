@@ -8,14 +8,13 @@ public class BankService {
      * Пользователи системы
      */
     private Map<User, List<Account>> users = new HashMap<>();
-
     /**
      * Метод добавления нового пользователя в систему
      *
      * @param user - пользователь
      */
     public void addUser(User user) {
-        users.computeIfAbsent(user, key -> new ArrayList<>());
+        users.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -25,8 +24,8 @@ public class BankService {
      * @param account  - счет
      */
     public void addAccount(String passport, Account account) {
-        Optional<User> user = findByPassport(passport);
-        if (user.isPresent() && !users.get(user).contains(account)) {
+        User user = findByPassport(passport);
+        if (user != null && !users.get(user).contains(account)) {
             users.get(user).add(account);
         }
     }
@@ -37,13 +36,14 @@ public class BankService {
      * @param passport - номер паспорта
      * @return
      */
-    public Optional<User> findByPassport(String passport) {
-        Optional<User> user = Optional.ofNullable(users.keySet()
-                .stream()
-                .filter(el -> el.getPassport()
-                        .equals(passport))
-                .findFirst()
-                .orElse(null));
+    public User findByPassport(String passport) {
+        User user = null;
+        for (User key : users.keySet()) {
+            if (key.getPassport().equals(passport)) {
+                user = key;
+                break;
+            }
+        }
         return user;
     }
 
@@ -55,15 +55,20 @@ public class BankService {
      * @return
      */
     public Account findByRequisite(String passport, String requisite) {
-        Optional<User> user = findByPassport(passport);
-        if (user.isPresent()) {
-            return this.users.get(user)
-                    .stream()
-                    .filter(e -> e.getRequisite().equals(requisite))
-                    .findFirst().orElse(null);
+        Account account = null;
+        User user = findByPassport(passport);
+        if (user != null) {
+            List<Account> accounts = users.get(user);
+            for (Account key : accounts) {
+                if (key.getRequisite().contains(requisite)) {
+                    account = key;
+                    break;
+                }
+            }
         }
-        return null;
+        return account;
     }
+
     /**
      * Метод перечисления денег с одного счета на другой
      *
